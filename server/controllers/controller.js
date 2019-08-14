@@ -16,8 +16,7 @@ module.exports = {
     model
       .addExpense(req.body)
       .then(result => {
-        console.log(result);
-        res.send('Hello');
+        res.sendStatus(201);
       })
       .catch(err => {
         console.log(err);
