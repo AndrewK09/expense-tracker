@@ -1,0 +1,36 @@
+{
+  "name": "expense-tracker",
+  "version": "1.0.0",
+  "description": "expenses tracker",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack -d --watch & nodemon server/index.js",
+    "start": "webpack --mode=production & nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andrewkn09/expense-tracker.git"
+  },
+  "author": "Andrew Kan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Andrewkn09/expense-tracker/issues"
+  },
+  "homepage": "https://github.com/Andrewkn09/expense-tracker#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1",
+    "pg-promise": "^9.0.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  }
+}
