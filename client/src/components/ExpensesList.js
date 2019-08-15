@@ -34,14 +34,23 @@ const ExpensesList = props => {
   return (
     <Box>
       <Toolbar className={classes.header}>
-        <Typography variant="h6" id="tableTitle">
-          Nutrition
-        </Typography>
-        <Tooltip title="Filter list">
-          <IconButton aria-label="filter list" onClick={handleClick}>
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
+        <Box>
+          <Typography variant="h6" id="tableTitle">
+            Nutrition
+          </Typography>
+        </Box>
+        <Box>
+          <Tooltip title="Filter list">
+            <IconButton onClick={handleClick}>
+              <FilterListIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="New expense">
+            <IconButton onClick={handleClick}>
+              <FilterListIcon />
+            </IconButton>
+          </Tooltip>
+        </Box>
       </Toolbar>
       <Table>
         <TableHead>
