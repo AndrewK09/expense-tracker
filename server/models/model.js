@@ -1,8 +1,11 @@
 const db = require('../../database/db.js');
 
 module.exports = {
-  getExpenses: () => {
-    return db.any('select * from expenses ORDER BY id DESC');
+  getExpenses: (col, sort) => {
+    return db.any('select * from expenses ORDER BY $1:alias $2:alias', [
+      col,
+      sort,
+    ]);
   },
   addExpense: expense => {
     const { description, category, company, amount } = expense;

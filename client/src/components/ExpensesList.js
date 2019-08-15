@@ -9,6 +9,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  TableSortLabel,
   Toolbar,
   Tooltip,
   Typography,
@@ -19,6 +20,7 @@ import AddIcon from '@material-ui/icons/add';
 import { makeStyles } from '@material-ui/core/styles';
 
 import FormDialog from './menu/FormDialog';
+import * as actions from '../actions/handleExpenses';
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -27,10 +29,19 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const headers = [
+  { name: 'category', label: 'Category' },
+  { name: 'company', label: 'Company' },
+  { name: 'amount', label: 'Amount' },
+  { name: 'id', label: 'Date' },
+];
+
 const ExpensesList = props => {
   const { expenses } = props;
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [order, setOrder] = useState('asc');
+  const [orderBy, setOrderBy] = useState('category');
 
   const handleClickForm = e => {
     setOpen(true);
@@ -38,6 +49,15 @@ const ExpensesList = props => {
 
   const handleCloseForm = e => {
     setOpen(false);
+  };
+
+  const handleSort = name => {
+    let isDesc = orderBy === name && order === 'desc';
+    let newOrder = isDesc ? 'asc' : 'desc';
+    setOrder(newOrder);
+    setOrderBy(name);
+
+    props.fetchExpenses(orderBy, order);
   };
 
   return (
@@ -69,10 +89,16 @@ const ExpensesList = props => {
         <TableHead>
           <TableRow>
             <TableCell>Description</TableCell>
-            <TableCell>Category</TableCell>
-            <TableCell>Company</TableCell>
-            <TableCell>Amount</TableCell>
-            <TableCell>Date</TableCell>
+            {headers.map(header => (
+              <TableCell key={header.name}>
+                <TableSortLabel
+                  direction={order}
+                  onClick={handleSort.bind(this, header.name)}
+                >
+                  {header.label}
+                </TableSortLabel>
+              </TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -97,5 +123,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  null
+  actions
 )(ExpensesList);

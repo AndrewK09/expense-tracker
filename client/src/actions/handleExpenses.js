@@ -1,8 +1,8 @@
 import { FETCH_EXPENSES, ADD_EXPENSES } from './types';
 import Axios from 'axios';
 
-export const fetchExpenses = () => dispatch => {
-  Axios.get('/expenses-list')
+export const fetchExpenses = (col = 'id', sort = 'desc') => dispatch => {
+  Axios.get(`/expenses-list/${col}/${sort}`)
     .then(({ data }) => {
       dispatch({
         type: FETCH_EXPENSES,
