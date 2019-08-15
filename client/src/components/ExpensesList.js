@@ -9,6 +9,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  TableSortLabel,
   Toolbar,
   Tooltip,
   Typography,
@@ -27,10 +28,20 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const headers = [
+  { name: 'description', label: 'Description' },
+  { name: 'category', label: 'Category' },
+  { name: 'company', label: 'Company' },
+  { name: 'amount', label: 'Amount' },
+  { name: 'date', label: 'Date' },
+];
+
 const ExpensesList = props => {
   const { expenses } = props;
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [order, setOrder] = useState('asc');
+  const [orderBy, setOrderBy] = useState('category');
 
   const handleClickForm = e => {
     setOpen(true);
@@ -38,6 +49,14 @@ const ExpensesList = props => {
 
   const handleCloseForm = e => {
     setOpen(false);
+  };
+
+  const handleSort = name => {
+    let isDesc = orderBy === name && order === 'desc';
+    setOrder(isDesc ? 'asc' : 'desc');
+    setOrderBy(name);
+    console.log('order', order);
+    console.log('orderBy :', orderBy);
   };
 
   return (
@@ -68,11 +87,17 @@ const ExpensesList = props => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Description</TableCell>
-            <TableCell>Category</TableCell>
-            <TableCell>Company</TableCell>
-            <TableCell>Amount</TableCell>
-            <TableCell>Date</TableCell>
+            {headers.map(header => (
+              <TableCell key={header.name}>
+                <TableSortLabel
+                  active={orderBy === header.name}
+                  direction={order}
+                  onClick={handleSort.bind(this, header.name)}
+                >
+                  {header.label}
+                </TableSortLabel>
+              </TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
