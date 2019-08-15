@@ -2,8 +2,9 @@ const model = require('../models/model.js');
 
 module.exports = {
   getExpenses: (req, res) => {
+    const { col, sort } = req.params;
     model
-      .getExpenses()
+      .getExpenses(col, sort)
       .then(result => {
         res.send(result);
       })

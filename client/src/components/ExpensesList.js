@@ -20,6 +20,7 @@ import AddIcon from '@material-ui/icons/add';
 import { makeStyles } from '@material-ui/core/styles';
 
 import FormDialog from './menu/FormDialog';
+import * as actions from '../actions/handleExpenses';
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -29,11 +30,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const headers = [
-  { name: 'description', label: 'Description' },
   { name: 'category', label: 'Category' },
   { name: 'company', label: 'Company' },
   { name: 'amount', label: 'Amount' },
-  { name: 'date', label: 'Date' },
+  { name: 'id', label: 'Date' },
 ];
 
 const ExpensesList = props => {
@@ -53,10 +53,11 @@ const ExpensesList = props => {
 
   const handleSort = name => {
     let isDesc = orderBy === name && order === 'desc';
-    setOrder(isDesc ? 'asc' : 'desc');
+    let newOrder = isDesc ? 'asc' : 'desc';
+    setOrder(newOrder);
     setOrderBy(name);
-    console.log('order', order);
-    console.log('orderBy :', orderBy);
+
+    props.fetchExpenses(orderBy, order);
   };
 
   return (
@@ -87,10 +88,10 @@ const ExpensesList = props => {
       <Table>
         <TableHead>
           <TableRow>
+            <TableCell>Description</TableCell>
             {headers.map(header => (
               <TableCell key={header.name}>
                 <TableSortLabel
-                  active={orderBy === header.name}
                   direction={order}
                   onClick={handleSort.bind(this, header.name)}
                 >
@@ -122,5 +123,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  null
+  actions
 )(ExpensesList);
