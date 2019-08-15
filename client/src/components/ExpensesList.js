@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import {
   Box,
+  Dialog,
   Table,
   TableBody,
   TableCell,
@@ -13,8 +14,11 @@ import {
   Typography,
   IconButton,
 } from '@material-ui/core';
-import FilterListIcon from '@material-ui/icons/FilterList';
+
+import AddIcon from '@material-ui/icons/add';
 import { makeStyles } from '@material-ui/core/styles';
+
+import FormDialog from './menu/FormDialog';
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -26,9 +30,14 @@ const useStyles = makeStyles(theme => ({
 const ExpensesList = props => {
   const { expenses } = props;
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
 
-  const handleClick = e => {
-    console.log('clicked');
+  const handleClickForm = e => {
+    setOpen(true);
+  };
+
+  const handleCloseForm = e => {
+    setOpen(false);
   };
 
   return (
@@ -36,22 +45,26 @@ const ExpensesList = props => {
       <Toolbar className={classes.header}>
         <Box>
           <Typography variant="h6" id="tableTitle">
-            Nutrition
+            Expenses
           </Typography>
         </Box>
         <Box>
-          <Tooltip title="Filter list">
-            <IconButton onClick={handleClick}>
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
           <Tooltip title="New expense">
-            <IconButton onClick={handleClick}>
-              <FilterListIcon />
+            <IconButton onClick={handleClickForm}>
+              <AddIcon />
             </IconButton>
           </Tooltip>
+          <Dialog
+            open={open}
+            onClose={handleCloseForm}
+            fullWidth={true}
+            maxWidth="xs"
+          >
+            <FormDialog handleClose={handleCloseForm} />
+          </Dialog>
         </Box>
       </Toolbar>
+
       <Table>
         <TableHead>
           <TableRow>

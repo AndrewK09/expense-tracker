@@ -14,7 +14,12 @@ export const fetchExpenses = () => dispatch => {
     });
 };
 
-export const addExpenses = expense => ({
-  type: ADD_EXPENSES,
-  payload: expense,
-});
+export const addExpenses = expense => dispatch => {
+  Axios.post('/expenses-list', expense)
+    .then(result => {
+      fetchExpenses();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};

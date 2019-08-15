@@ -15,7 +15,6 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
   },
   formControl: {
-    // margin: theme.spacing(1),
     minWidth: 100,
   },
 }));
@@ -37,10 +36,10 @@ const Filters = () => {
   // };
 
   return (
-    <Box>
+    <React.Fragment>
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel ref={inputLabel} htmlFor="outlined-age-simple">
-          Sort By
+          Filter by:
         </InputLabel>
         <Select
           value={''}
@@ -56,12 +55,12 @@ const Filters = () => {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Company</MenuItem>
-          <MenuItem value={20}>Category</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value="Category">Category</MenuItem>
+          <MenuItem value="Company">Company</MenuItem>
+          <MenuItem value="">Thirty</MenuItem>
         </Select>
       </FormControl>
-    </Box>
+    </React.Fragment>
   );
 };
 

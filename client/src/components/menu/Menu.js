@@ -2,7 +2,6 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 
 import Filters from './Filters';
-import FormDiaglos from './FormDialogs';
 
 const Menu = () => {
   return (
