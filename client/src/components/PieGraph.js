@@ -32,7 +32,11 @@ const PieGraph = props => {
   useEffect(() => {
     setColors(makeColors(chart));
     setLabels(Object.keys(chart));
-    setValues(Object.values(chart));
+    setValues(
+      Object.values(chart).map(num => {
+        return num.toFixed(2);
+      })
+    );
   }, [chart]);
 
   const pieChart = {
