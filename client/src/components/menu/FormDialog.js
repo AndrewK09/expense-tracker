@@ -17,7 +17,8 @@ import {
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
-import * as actions from '../../actions/handleExpenses';
+import { fetchExpenses, addExpenses } from '../../actions/handleExpenses';
+import { fetchGraph } from '../../actions/fetchGraph';
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -35,9 +36,8 @@ const defaultForm = {
 
 const FormDialog = props => {
   const classes = useStyles();
-  const { handleClose } = props;
   const [form, setForm] = useState(defaultForm);
-
+  const { addExpenses, fetchExpenses, fetchGraph, handleClose } = props;
   const handleChange = e => {
     e.persist();
     setForm(prevState => {
@@ -52,14 +52,8 @@ const FormDialog = props => {
   };
 
   const handleSubmit = e => {
-    props
-      .addExpenses(form)
-      .then(() => {
-        props.handleClose();
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    addExpenses(form);
+    handleClose();
   };
 
   return (
@@ -132,7 +126,19 @@ const FormDialog = props => {
   );
 };
 
+const mapDispatchToProps = dispatch => ({
+  fetchExpenses: () => {
+    dispatch(fetchExpenses());
+  },
+  addExpenses: form => {
+    dispatch(addExpenses(form));
+  },
+  fetchGraph: () => {
+    dispatch(fetchGraph());
+  },
+});
+
 export default connect(
   null,
-  actions
+  mapDispatchToProps
 )(FormDialog);

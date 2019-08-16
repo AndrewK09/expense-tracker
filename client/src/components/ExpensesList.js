@@ -108,7 +108,7 @@ const ExpensesList = props => {
               <TableCell>{expense.description}</TableCell>
               <TableCell>{expense.category}</TableCell>
               <TableCell>{expense.company}</TableCell>
-              <TableCell>{expense.amount}</TableCell>
+              <TableCell>${expense.amount}</TableCell>
               <TableCell>{moment(expense.date).format('MMM-DD-YY')}</TableCell>
             </TableRow>
           ))}

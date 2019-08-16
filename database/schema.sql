@@ -6,7 +6,7 @@ CREATE TABLE expenses
   description varchar(50) NOT NULL,
   category varchar(50) NOT NULL,
   company varchar(50),
-  amount integer NOT NULL,
+  amount numeric(1000, 2) NOT NULL,
   date date default CURRENT_DATE,
   CONSTRAINT "Expenses_pkey" PRIMARY KEY (id)
 )
