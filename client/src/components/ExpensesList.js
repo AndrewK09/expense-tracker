@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
@@ -41,7 +41,7 @@ const headers = [
   { name: 'category', label: 'Category', type: 'string' },
   { name: 'company', label: 'Company', type: 'string' },
   { name: 'amount', label: 'Amount', type: 'number' },
-  { name: 'id', label: 'Date', type: 'number' },
+  { name: 'date', label: 'Date', type: 'number' },
 ];
 
 const ExpensesList = props => {
@@ -53,6 +53,10 @@ const ExpensesList = props => {
   const [page, setPage] = useState(0);
   const pageRows = 7;
   const emptyRows = pageRows - Math.min(expenses.length - page * pageRows);
+
+  useEffect(() => {
+    props.fetchExpenses(orderBy, order);
+  }, [order]);
 
   const handleClickForm = e => {
     setOpen(true);
@@ -67,8 +71,6 @@ const ExpensesList = props => {
     let newOrder = isDesc ? 'asc' : 'desc';
     setOrder(newOrder);
     setOrderBy(name);
-
-    props.fetchExpenses(orderBy, order);
   };
 
   const handleChangePage = (e, nextPage) => {

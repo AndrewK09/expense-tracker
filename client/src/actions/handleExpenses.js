@@ -3,6 +3,7 @@ import { fetchGraph } from './fetchGraph';
 import Axios from 'axios';
 
 export const fetchExpenses = (col = 'date', sort = 'desc') => dispatch => {
+  console.log('fetching');
   return Axios.get(`/expenses-list/data/${col}/${sort}`)
     .then(({ data }) => {
       dispatch({
