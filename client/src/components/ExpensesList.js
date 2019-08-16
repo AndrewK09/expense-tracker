@@ -28,13 +28,14 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0),
     justifyContent: 'space-between',
   },
+  date: { minWidth: '100px' },
 }));
 
 const headers = [
-  { name: 'category', label: 'Category' },
-  { name: 'company', label: 'Company' },
-  { name: 'amount', label: 'Amount' },
-  { name: 'id', label: 'Date' },
+  { name: 'category', label: 'Category', type: 'string' },
+  { name: 'company', label: 'Company', type: 'string' },
+  { name: 'amount', label: 'Amount', type: 'number' },
+  { name: 'id', label: 'Date', type: 'number' },
 ];
 
 const ExpensesList = props => {
@@ -91,7 +92,10 @@ const ExpensesList = props => {
           <TableRow>
             <TableCell>Description</TableCell>
             {headers.map(header => (
-              <TableCell key={header.name}>
+              <TableCell
+                key={header.name}
+                align={header.type === 'string' ? 'left' : 'right'}
+              >
                 <TableSortLabel
                   direction={order}
                   onClick={handleSort.bind(this, header.name)}
@@ -108,8 +112,10 @@ const ExpensesList = props => {
               <TableCell>{expense.description}</TableCell>
               <TableCell>{expense.category}</TableCell>
               <TableCell>{expense.company}</TableCell>
-              <TableCell>${expense.amount}</TableCell>
-              <TableCell>{moment(expense.date).format('MMM-DD-YY')}</TableCell>
+              <TableCell align="right">${expense.amount}</TableCell>
+              <TableCell align="right" className={classes.date}>
+                {moment(expense.date).format('MMM-DD-YY')}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
