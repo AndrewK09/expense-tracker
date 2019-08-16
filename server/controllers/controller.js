@@ -24,4 +24,45 @@ module.exports = {
         res.sendStatus(500);
       });
   },
+  getChart: (req, res) => {
+    const { filter } = req.params;
+    model
+      .getChart(filter)
+      .then(result => {
+        let chart = convertData(result, filter);
+        res.send(chart);
+      })
+      .catch(err => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  },
+};
+const getRandomColor = () => {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+
+  return color;
+};
+
+const convertData = (expenses, filter) => {
+  let storage = {};
+  let colors = [];
+
+  for (let col of expenses) {
+    let label = col[filter];
+    let value = col.amount;
+
+    if (!storage[label]) {
+      storage[label] = value;
+      colors.push(getRandomColor());
+    } else {
+      storage[label] += value;
+    }
+  }
+  return storage;
 };

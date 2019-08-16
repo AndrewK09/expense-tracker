@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import {
   Box,
@@ -64,7 +65,7 @@ const ExpensesList = props => {
     <Box>
       <Toolbar className={classes.header}>
         <Box>
-          <Typography variant="h6" id="tableTitle">
+          <Typography variant="h5" component="h3">
             Expenses
           </Typography>
         </Box>
@@ -108,7 +109,7 @@ const ExpensesList = props => {
               <TableCell>{expense.category}</TableCell>
               <TableCell>{expense.company}</TableCell>
               <TableCell>{expense.amount}</TableCell>
-              <TableCell>{expense.date}</TableCell>
+              <TableCell>{moment(expense.date).format('MMM-DD-YY')}</TableCell>
             </TableRow>
           ))}
         </TableBody>

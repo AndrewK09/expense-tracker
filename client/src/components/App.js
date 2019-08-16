@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { Container, CssBaseline } from '@material-ui/core';
 
-import * as actions from '../actions/handleExpenses';
+import { fetchExpenses } from '../actions/handleExpenses';
+import { fetchGraph } from '../actions/fetchGraph';
+
 import Header from './Header.js';
 import Main from './Main';
 import Landing from './Landing.js';
@@ -11,6 +13,7 @@ import Landing from './Landing.js';
 const App = props => {
   useEffect(() => {
     props.fetchExpenses();
+    props.fetchGraph();
   }, []);
 
   return (
@@ -29,7 +32,16 @@ const mapStateToProps = state => ({
   expenses: state.expenses,
 });
 
+const mapDispatchToProps = dispatch => ({
+  fetchExpenses: () => {
+    dispatch(fetchExpenses());
+  },
+  fetchGraph: () => {
+    dispatch(fetchGraph());
+  },
+});
+
 export default connect(
   mapStateToProps,
-  actions
+  mapDispatchToProps
 )(App);

@@ -8,11 +8,14 @@ module.exports = {
     ]);
   },
   addExpense: expense => {
-    const { description, category, company, amount } = expense;
+    const { description, category, company, amount, date } = expense;
     return db.none(
-      `INSERT INTO expenses (description, category, company, amount) 
-        VALUES ($1, $2, $3, $4)`,
-      [description, category, company, amount]
+      `INSERT INTO expenses (description, category, company, amount, date) 
+        VALUES ($1, $2, $3, $4, $5)`,
+      [description, category, company, amount, date]
     );
+  },
+  getChart: filter => {
+    return db.any('select $1:alias, amount from expenses', [filter]);
   },
 };

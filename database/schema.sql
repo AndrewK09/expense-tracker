@@ -7,6 +7,6 @@ CREATE TABLE expenses
   category varchar(50) NOT NULL,
   company varchar(50),
   amount integer NOT NULL,
-  date varchar(8) default to_char(CURRENT_DATE, 'yyyymmdd'),
+  date date default CURRENT_DATE,
   CONSTRAINT "Expenses_pkey" PRIMARY KEY (id)
 )
