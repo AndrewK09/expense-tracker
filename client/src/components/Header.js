@@ -7,22 +7,27 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 
-const useStyles = makeStyles(theme => ({}));
+const useStyles = makeStyles(theme => ({
+  root: {
+    backgroundColor: '#239B00',
+    height: '70px',
+    fontWeight: 'bold',
+  },
+}));
 
 const Header = () => {
   const classes = useStyles();
 
   return (
-    <Grid>
-      <AppBar position="static">
+    <Box>
+      <AppBar position="static" className={classes.root}>
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            Mah Expenses
+          <Typography variant="h5" className={classes.title}>
+            <b>Mah Expenses</b>
           </Typography>
-          <Button color="inherit">Signup</Button>
         </Toolbar>
       </AppBar>
-    </Grid>
+    </Box>
   );
 };
 

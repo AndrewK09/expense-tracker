@@ -19,11 +19,12 @@ const App = props => {
   return (
     <Container maxWidth={false}>
       <CssBaseline />
-      <BrowserRouter>
-        <Header />
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/expenses" component={Main} />
-      </BrowserRouter>
+      {/* <BrowserRouter> */}
+      <Header />
+      <Main />
+      {/* <Route exact path="/" component={Landing} /> */}
+      {/* <Route exact path="/expenses" component={Main} /> */}
+      {/* </BrowserRouter> */}
     </Container>
   );
 };
