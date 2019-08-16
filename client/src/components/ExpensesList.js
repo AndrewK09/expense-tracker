@@ -34,7 +34,15 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0),
     justifyContent: 'space-between',
   },
-  date: { minWidth: '100px' },
+  table: {
+    minHeight: '400px',
+  },
+  tableCell: {
+    whiteSpace: 'nowrap',
+  },
+  date: {
+    whiteSpace: 'nowrap',
+  },
 }));
 
 const headers = [
@@ -102,7 +110,7 @@ const ExpensesList = props => {
         </Box>
       </Toolbar>
 
-      <Table>
+      <Table className={classes.table}>
         <TableHead>
           <TableRow>
             <TableCell>Description</TableCell>
@@ -127,7 +135,9 @@ const ExpensesList = props => {
             .slice(page * pageRows, page * pageRows + pageRows)
             .map(expense => (
               <TableRow key={expense.id} hover={true}>
-                <TableCell>{expense.description}</TableCell>
+                <TableCell className={classes.tableCell}>
+                  {expense.description}
+                </TableCell>
                 <TableCell>{expense.category}</TableCell>
                 <TableCell>{expense.company}</TableCell>
                 <TableCell align="right">${expense.amount}</TableCell>
