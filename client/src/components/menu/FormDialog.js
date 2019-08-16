@@ -9,6 +9,7 @@ import {
   DialogContentText,
   DialogTitle,
   TextField,
+  Typography,
 } from '@material-ui/core';
 import {
   MuiPickersUtilsProvider,
@@ -108,7 +109,7 @@ const FormDialog = props => {
             variant="inline"
             format="MM/dd/yyyy"
             margin="normal"
-            label="Date"
+            label={<Typography style={{ fontSize: '22px' }}>Date</Typography>}
             value={form.date}
             onChange={handleDate}
           />
