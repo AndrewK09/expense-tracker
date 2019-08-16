@@ -2,7 +2,7 @@ import { FETCH_EXPENSES, ADD_EXPENSES } from './types';
 import { fetchGraph } from './fetchGraph';
 import Axios from 'axios';
 
-export const fetchExpenses = (col = 'id', sort = 'desc') => dispatch => {
+export const fetchExpenses = (col = 'date', sort = 'desc') => dispatch => {
   return Axios.get(`/expenses-list/data/${col}/${sort}`)
     .then(({ data }) => {
       dispatch({
