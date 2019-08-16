@@ -56,7 +56,7 @@ const ExpensesList = props => {
 
   useEffect(() => {
     props.fetchExpenses(orderBy, order);
-  }, [order]);
+  }, [order, orderBy]);
 
   const handleClickForm = e => {
     setOpen(true);
