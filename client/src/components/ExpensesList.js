@@ -22,6 +22,7 @@ import {
 import AddIcon from '@material-ui/icons/add';
 import { makeStyles } from '@material-ui/core/styles';
 
+import PageActions from './PageActions';
 import FormDialog from './menu/FormDialog';
 import * as actions from '../actions/handleExpenses';
 
@@ -142,6 +143,7 @@ const ExpensesList = props => {
         <TableFooter>
           <TableRow style={{ borderBottom: '0' }}>
             <TablePagination
+              ActionsComponent={PageActions}
               style={{ borderBottom: '0' }}
               count={expenses.length}
               onChangePage={handleChangePage}
