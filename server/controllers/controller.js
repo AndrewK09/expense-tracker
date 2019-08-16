@@ -58,10 +58,10 @@ const convertData = (expenses, filter) => {
     let value = col.amount;
 
     if (!storage[label]) {
-      storage[label] = value;
+      storage[label] = Number(value);
       colors.push(getRandomColor());
     } else {
-      storage[label] += value;
+      storage[label] += Number(value);
     }
   }
   return storage;
