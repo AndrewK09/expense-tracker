@@ -139,7 +139,7 @@ const ExpensesList = props => {
                 <TableCell>{expense.company}</TableCell>
                 <TableCell align="right">${expense.amount}</TableCell>
                 <TableCell align="right" className={classes.date}>
-                  {moment(expense.date).format('M-DD-YY')}
+                  {moment.utc(expense.date).format('M-DD-YY')}
                 </TableCell>
               </TableRow>
             ))}
