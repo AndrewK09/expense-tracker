@@ -52,7 +52,14 @@ const FormDialog = props => {
   };
 
   const handleSubmit = e => {
-    props.addExpenses(form);
+    props
+      .addExpenses(form)
+      .then(() => {
+        props.handleClose();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (

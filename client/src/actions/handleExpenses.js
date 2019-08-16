@@ -15,11 +15,7 @@ export const fetchExpenses = (col = 'id', sort = 'desc') => dispatch => {
 };
 
 export const addExpenses = expense => dispatch => {
-  Axios.post('/expenses-list/', expense)
-    .then(result => {
-      fetchExpenses();
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  return Axios.post('/expenses-list/', expense).then(() => {
+    return fetchExpenses();
+  });
 };
