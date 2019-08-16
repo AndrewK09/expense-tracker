@@ -37,9 +37,6 @@ const useStyles = makeStyles(theme => ({
   table: {
     minHeight: '400px',
   },
-  tableCell: {
-    whiteSpace: 'nowrap',
-  },
   date: {
     whiteSpace: 'nowrap',
   },
@@ -147,7 +144,7 @@ const ExpensesList = props => {
               </TableRow>
             ))}
           {emptyRows > 0 && (
-            <TableRow style={{ height: 45 * emptyRows }}>
+            <TableRow style={{ height: 49 * emptyRows }}>
               <TableCell colSpan={5} />
             </TableRow>
           )}
