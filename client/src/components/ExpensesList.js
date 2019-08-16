@@ -119,6 +119,7 @@ const ExpensesList = props => {
             ))}
           </TableRow>
         </TableHead>
+
         <TableBody>
           {expenses
             .slice(page * pageRows, page * pageRows + pageRows)
