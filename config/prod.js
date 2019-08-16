@@ -1,3 +1,3 @@
 module.exports = {
-  pgURI: 'postgres://admin@localhost:5432/mahexpenses',
+  pgURI: process.env.DATABASE_URL,
 };
