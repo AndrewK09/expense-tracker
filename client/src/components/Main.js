@@ -14,13 +14,13 @@ const useStyles = makeStyles(theme => ({
   paperLeft: {
     margin: '30px 0 0 0px',
     padding: '20px 30px 15px 30px',
-    // height: '80vh',
+    height: '540px',
     overflowX: 'auto',
   },
   paperRight: {
     margin: '30px 0 0 30px',
     padding: '30px 30px 15px 30px',
-    height: '79vh',
+    height: '540px',
   },
 }));
 
